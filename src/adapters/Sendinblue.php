@@ -83,7 +83,7 @@ class Sendinblue extends BaseNewsletterAdapter
         ]);
     }
 
-    public function subscribe(string $email): bool
+    public function subscribe(string $email, array $fields = null): bool
     {
         $clientContactApi = $this->getClientContactApi();
         $listId = (int)App::parseEnv($this->listId);

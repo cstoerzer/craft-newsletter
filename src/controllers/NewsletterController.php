@@ -31,6 +31,8 @@ class NewsletterController extends Controller
 
         // form validation
         $newsletterForm = new NewsletterForm();
+        $newsletterForm->firstName = $this->request->post('firstName');
+        $newsletterForm->lastName = $this->request->post('lastName');
         $newsletterForm->email = $this->request->post('email');
         $newsletterForm->consent = $this->request->post('consent');
 
