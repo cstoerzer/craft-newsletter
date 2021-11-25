@@ -17,7 +17,7 @@ interface NewsletterAdapterInterface extends ConfigurableComponentInterface
      * @param string $email
      * @return bool
      */
-    public function subscribe(string $email);
+    public function subscribe(string $email, array $fields = null);
 
     /**
      * Return the latest error message after a call to the subscribe method

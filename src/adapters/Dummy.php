@@ -51,7 +51,7 @@ class Dummy extends BaseNewsletterAdapter
      * @param string $email
      * @return bool
      */
-    public function subscribe(string $email): bool
+    public function subscribe(string $email, array $fields = null): bool
     {
         return true;
     }

@@ -86,14 +86,14 @@ class Mailchimp extends BaseNewsletterAdapter
         $this->_listApi = $listsApi;
     }
 
-    public function subscribe(string $email): bool
+    public function subscribe(string $email, array $fields = null): bool
     {
         $client = $this->getClient();
         $listsApi = $this->getListApi($client);
         $parsedListId = Craft::parseEnv($this->listId);
 
         if (!$this->_contactExist($email, $listsApi, $parsedListId)) {
-            return $this->_registerContact($email, $listsApi, $parsedListId);
+            return $this->_registerContact($email, $listsApi, $parsedListId, $fields);
         }
 
         return true;
@@ -113,17 +113,23 @@ class Mailchimp extends BaseNewsletterAdapter
         }
     }
 
-    private function _registerContact(string $email, ListsApi $listsApi, string $listId): bool
+    private function _registerContact(string $email, ListsApi $listsApi, string $listId, array $fields = null): bool
     {
         try {
-            $listsApi->addListMember($listId, [
+
+            $subscriber_hash = md5(strtolower($email));
+
+            $listsApi->setListMember($listId, $subscriber_hash,[
                 "email_address" => $email,
-                "status" => "subscribed",
+                "status_if_new" => "pending",
+                "merge_fields" => $fields,
             ]);
 
             return true;
-        } catch (ClientException $clientException) {
+        }
+         catch (ClientException $clientException) {
             $this->_errorMessage = $this->_getErrorMessage($clientException);
+            //var_dump($clientException->getMessage());
             return false;
         } catch (ConnectException $connectException) {
             $this->_errorMessage = $this->_getErrorConnect($connectException);
@@ -156,6 +162,8 @@ class Mailchimp extends BaseNewsletterAdapter
         $errorMessage = Craft::t('newsletter', 'The newsletter service is not available at that time. Please, try again later.');
         if (array_key_exists($clientException->getCode(), $errorLogMessages)) {
             Craft::error($errorLogMessages[$clientException->getCode()] . " " . VarDumper::dumpAsString($clientException->getResponse()), __METHOD__);
+            //$errorMessage = Craft::t('newsletter', '{errorMessage}', ['errorMessage' => $errorLogMessages[$clientException->getCode()] ?? '']);
+            //echo $errorMessage;
         } else {
             $body = Json::decode($clientException->getResponse()->getBody()->getContents(), false);
             $errorMessage = Craft::t('newsletter', 'An error has occurred : {errorMessage}.', ['errorMessage' => $body->detail ?? '']);

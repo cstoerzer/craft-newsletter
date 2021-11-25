@@ -1,0 +1,25 @@
+<?php
+return [
+    '{name} plugin loaded'                                                                                             => 'Plugin {name} geladen',
+    "Your newsletter subscription has been taken into account. Thank you."                                             => "Ihre E-Mail Adresse wurde gespeichert. Vielen Dank!",
+    "You are already subscribed to our newsletter."                                                                    => "Sie bekommen unseren Newsletter bereits.",
+    "Please provide a valid email address."                                                                            => "Bitte geben Sie eine gültige E-Mail Adresse ein.",
+    "Please provide a first name."                                                                                     => "Bitte geben Sie einen Vornamen ein.",
+    "Please provide a last name."                                                                                      => "Bitte geben Sie einen Nachnamen ein.",
+    "Please provide your consent."                                                                                     => "Bitte bestätigen Sie die Datenschutzbestimmungen.",
+    "Please prove you are not a robot."                                                                                => "Bitte bestätigen Sie das ReCAPTCHA.",
+    "The newsletter service is not available at that time. Please, try again later."                                   => "Der Newsletter Service ist gerade nicht verfügbar. Bitte versuchen Sie es später nocheinmal.",
+    "An error has occurred : {errorMessage}."                                                                          => "Es ist ein Fehler aufgetreten : {errorMessage}.",
+    "Unknown error. Please, try again."                                                                                => "Unbekannter Fehler. Bitte versuchen Sie es nocheinmal.",
+    "API Key"                                                                                                          => "API Key",
+    "API Secret"                                                                                                       => "API Secret",
+    "Contact List ID"                                                                                                  => "Kontakt-Listen ID",
+    "Server Prefix"                                                                                                    => "Server Prefix",
+    "Audience ID"                                                                                                      => "Audience ID",
+    "If left empty, users will not be associated with any specific list."                                              => "User werden nicht auf eine spezifische Liste gesetzt, falls dieser Wert leer ist.",
+    "Service type"                                                                                                     => "Art des Services",
+    "Which service should be use to handle newsletter users subscription?"                                             => "Welcher Service soll für Newsletter Subscriptions verwendet werden",
+    "Mailchimp server prefix (i.e. \"us19\"), in order determine to appropriate host url"                              => "Mailchimp Server Prefix (z.B. \"us19\"), um die richtige URL zu verwenden.",
+    "Audience ID can be found in Mailchimp account in Audience > All contacts > Settings > Audience name and defaults" => "Die Audience ID kann in Mailchimp unter Audience > All contacts > Settings > Audience name and defaults gefunden werden.",
+    "If enabled, newsletter subscription form will be verified using Google reCAPTCHA plugin."                         => "Falls aktiviert, wird das Newsletter Subscription Formular das Google ReCAPTCHA Plugin verwenden."
+];
